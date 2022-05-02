@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 /**
  * Given a string, return its encoding version.
@@ -10,11 +10,19 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For aabbbc should return 2a3bc
  *
  */
-function encodeLine(/* str */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function encodeLine(str) {
+  if (!str.length) return str;
+  let a = str.match(/(.)\1*/g);
+  return a
+    .map((item) => {
+      if (item.length > 1) {
+        return item.length + item[0];
+      }
+      return item;
+    })
+    .join("");
 }
 
 module.exports = {
-  encodeLine
+  encodeLine,
 };
